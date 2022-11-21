@@ -1,12 +1,12 @@
 package client.frame;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import client.MultiClient;
 
 public class LoginPanel extends JPanel {
 
@@ -82,14 +82,40 @@ public class LoginPanel extends JPanel {
 
 		});
 
-		btn_joindo.addActionListener(e ->
-
-		{
-			// 가입창 구현 예정
-			System.out.println("가입창 구현예정");
-
-		});
 
 	}
+	
+	public void LoginAction(ActionListener listener) {
+		btn_logindo.addActionListener(listener);
+	}
+	public void JoinAction(ActionListener listener) {
+		btn_joindo.addActionListener(listener);
+	}
+	
+	
+	String id;
+	String pw;
+//	String id = input_id.getText().trim();
+//	String pw = input_pw.getText().trim();
+
+	public JTextField getInput_id() {
+		return input_id;
+	}
+
+	public void setInput_id(JTextField input_id) {
+		this.input_id = input_id;
+	}
+
+	public JTextField getInput_pw() {
+		return input_pw;
+	}
+
+	public void setInput_pw(JTextField input_pw) {
+		this.input_pw = input_pw;
+	}
+
+
+	
+	
 
 }
