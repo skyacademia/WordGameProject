@@ -56,32 +56,6 @@ public class LoginPanel extends JPanel {
 		add(btn_logindo);
 		add(btn_joindo);
 
-		btn_logindo.addActionListener(e -> {
-			String id = input_id.getText().trim();
-			String pw = input_pw.getText().trim();
-
-			if (id.length() == 0 || pw.length() == 0) {
-				JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 입력 하셔야 됩니다.", "아이디나 비번을 입력!",
-						JOptionPane.DEFAULT_OPTION);
-				return;
-			}
-
-			if (id.equals("test") && pw.equals("1234")) { // 이 부분은 서버 db 연결해서 확인하는 방식으로 바꾸어야 할것 같아요~ 일단 임시임당
-				JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-				/*
-				 * // 이부분은 로그인하는 곳으로 옮기면 될것같아요 로그인이 완료 되면 소켓을 생성 + 패넣변경 client = new
-				 * MultiClient(); String name = "임시 이름" + (int) (Math.random() * 10);
-				 * client.start(name); // 로그인이 되면 소켓을 연결한다..
-				 */
-				EnterPanel enterpanel = new EnterPanel();
-				MainPanel.frame.change(enterpanel);
-
-			} else {
-				JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-			}
-
-		});
-
 
 	}
 	
