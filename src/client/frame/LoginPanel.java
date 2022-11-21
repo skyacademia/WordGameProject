@@ -28,9 +28,9 @@ public class LoginPanel extends JPanel {
 
 	private void loginform() {
 
-		label_loginid = new JLabel("¾ÆÀÌµð");
+		label_loginid = new JLabel("ì•„ì´ë””");
 		input_id = new JTextField("", 10);
-		label_loginpw = new JLabel("ºñ¹Ð¹øÈ£");
+		label_loginpw = new JLabel("ë¹„ë°€ë²ˆí˜¸");
 		input_pw = new JTextField("", 10);
 
 		label_loginid.setBounds(40, 80, 95, 22);
@@ -47,8 +47,8 @@ public class LoginPanel extends JPanel {
 
 	private void setButtons() {
 
-		JButton btn_logindo = new JButton("·Î±×ÀÎ");
-		JButton btn_joindo = new JButton("°¡ÀÔÇÏ±â");
+		JButton btn_logindo = new JButton("ë¡œê·¸ì¸");
+		JButton btn_joindo = new JButton("ê°€ìž…í•˜ê¸°");
 
 		btn_logindo.setBounds(120, 150, 95, 22);
 		btn_joindo.setBounds(40, 150, 95, 22);
@@ -61,24 +61,24 @@ public class LoginPanel extends JPanel {
 			String pw = input_pw.getText().trim();
 
 			if (id.length() == 0 || pw.length() == 0) {
-				JOptionPane.showMessageDialog(null, "¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£¸¦ ÀÔ·Â ÇÏ¼Å¾ß µË´Ï´Ù.", "¾ÆÀÌµð³ª ºñ¹øÀ» ÀÔ·Â!",
+				JOptionPane.showMessageDialog(null, "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥ í•˜ì…”ì•¼ ë©ë‹ˆë‹¤.", "ì•„ì´ë””ë‚˜ ë¹„ë²ˆì„ ìž…ë ¥!",
 						JOptionPane.DEFAULT_OPTION);
 				return;
 			}
 
-			if (id.equals("test") && pw.equals("1234")) { // ÀÌ ºÎºÐÀº ¼­¹ö db ¿¬°áÇØ¼­ È®ÀÎÇÏ´Â ¹æ½ÄÀ¸·Î ¹Ù²Ù¾î¾ß ÇÒ°Í °°¾Æ¿ä~ ÀÏ´Ü ÀÓ½ÃÀÓ´ç
-				JOptionPane.showMessageDialog(null, "·Î±×ÀÎ ¼º°ø", "·Î±×ÀÎ È®ÀÎ!", JOptionPane.DEFAULT_OPTION);
+			if (id.equals("test") && pw.equals("1234")) { // ì´ ë¶€ë¶„ì€ ì„œë²„ db ì—°ê²°í•´ì„œ í™•ì¸í•˜ëŠ” ë°©ì‹ìœ¼ë¡œ ë°”ê¾¸ì–´ì•¼ í• ê²ƒ ê°™ì•„ìš”~ ì¼ë‹¨ ìž„ì‹œìž„ë‹¹
+				JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ ì„±ê³µ", "ë¡œê·¸ì¸ í™•ì¸!", JOptionPane.DEFAULT_OPTION);
 
-				// ÀÌºÎºÐÀº ·Î±×ÀÎÇÏ´Â °÷À¸·Î ¿Å±â¸é µÉ°Í°°¾Æ¿ä ·Î±×ÀÎÀÌ ¿Ï·á µÇ¸é ¼ÒÄÏÀ» »ý¼º + ÆÐ³Öº¯°æ
+				// ì´ë¶€ë¶„ì€ ë¡œê·¸ì¸í•˜ëŠ” ê³³ìœ¼ë¡œ ì˜®ê¸°ë©´ ë ê²ƒê°™ì•„ìš” ë¡œê·¸ì¸ì´ ì™„ë£Œ ë˜ë©´ ì†Œì¼“ì„ ìƒì„± + íŒ¨ë„£ë³€ê²½
 				client = new MultiClient();
-				String name = "ÀÓ½Ã ÀÌ¸§" + (int) (Math.random() * 10);
-				client.start(name); // ·Î±×ÀÎÀÌ µÇ¸é ¼ÒÄÏÀ» ¿¬°áÇÑ´Ù..
+				String name = "ìž„ì‹œ ì´ë¦„" + (int) (Math.random() * 10);
+				client.start(name); // ë¡œê·¸ì¸ì´ ë˜ë©´ ì†Œì¼“ì„ ì—°ê²°í•œë‹¤..
 
 				EnterPanel enterpanel = new EnterPanel();
 				MainPanel.frame.change(enterpanel);
 
 			} else {
-				JOptionPane.showMessageDialog(null, "·Î±×ÀÎ ½ÇÆÐ", "·Î±×ÀÎ È®ÀÎ!", JOptionPane.DEFAULT_OPTION);
+				JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ ì‹¤íŒ¨", "ë¡œê·¸ì¸ í™•ì¸!", JOptionPane.DEFAULT_OPTION);
 			}
 
 		});
@@ -86,8 +86,8 @@ public class LoginPanel extends JPanel {
 		btn_joindo.addActionListener(e ->
 
 		{
-			// °¡ÀÔÃ¢ ±¸Çö ¿¹Á¤
-			System.out.println("°¡ÀÔÃ¢ ±¸Çö¿¹Á¤");
+			// ê°€ìž…ì°½ êµ¬í˜„ ì˜ˆì •
+			System.out.println("ê°€ìž…ì°½ êµ¬í˜„ì˜ˆì •");
 
 		});
 

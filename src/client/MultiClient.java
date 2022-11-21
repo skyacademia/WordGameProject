@@ -15,7 +15,7 @@ public class MultiClient {
 
 		try {
 			socket = new Socket("localhost", 8000);
-			System.out.println("[¼­¹ö¿Í ¿¬°áµÇ¾ú½À´Ï´Ù]");
+			System.out.println("[ì„œë²„ì™€ ì—°ê²°ë˜ì—ˆìŠµë‹ˆë‹¤]");
 
 			Thread sendThread = new SendThread(socket, name);
 			sendThread.start();
@@ -23,12 +23,12 @@ public class MultiClient {
 			/*
 			 * in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			 * while (in != null) { String inputMsg = in.readLine(); if (("[" + name +
-			 * "]´ÔÀÌ ³ª°¡¼Ì½À´Ï´Ù").equals(inputMsg)) break; System.out.println("From:" +
+			 * "]ë‹˜ì´ ë‚˜ê°€ì…¨ìŠµë‹ˆë‹¤").equals(inputMsg)) break; System.out.println("From:" +
 			 * inputMsg); }
 			 */
 
 		} catch (IOException e) {
-			System.out.println("[¼­¹ö Á¢¼Ó²÷±è]");
+			System.out.println("[ì„œë²„ ì ‘ì†ëŠê¹€]");
 		}
 
 	}
@@ -41,6 +41,6 @@ public class MultiClient {
 			}
 		} catch (IOException e) {
 		}
-		System.out.println("[¼­¹ö ¿¬°áÁ¾·á]");
+		System.out.println("[ì„œë²„ ì—°ê²°ì¢…ë£Œ]");
 	}
 }
