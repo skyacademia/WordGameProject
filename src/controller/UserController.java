@@ -23,6 +23,7 @@ public class UserController {
 	public void loginActionListener() { // 로그인 버튼 눌렀을때
 		String id = ((LoginPanel) userview).getInput_id().getText().trim();
 		String pw = ((LoginPanel) userview).getInput_pw().getText().trim();
+		
 		((LoginPanel) this.userview).LoginAction(new ActionListener() {
 
 			@Override
