@@ -4,8 +4,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import client.MultiClient;
+
 public class MainPanel extends JPanel {
 	public static MainFrame frame;
+	public MultiClient client;
 
 	public MainPanel(MainFrame frame) {
 

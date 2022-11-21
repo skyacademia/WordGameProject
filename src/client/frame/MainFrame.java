@@ -3,6 +3,8 @@ package client.frame;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import client.MultiClient;
+
 public class MainFrame extends JFrame {
 	
 	

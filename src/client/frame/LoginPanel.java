@@ -10,7 +10,7 @@ import client.MultiClient;
 
 public class LoginPanel extends JPanel {
 
-	public MultiClient client;
+
 
 	JLabel label_loginid;
 	JTextField input_id;
@@ -68,12 +68,11 @@ public class LoginPanel extends JPanel {
 
 			if (id.equals("test") && pw.equals("1234")) { // 이 부분은 서버 db 연결해서 확인하는 방식으로 바꾸어야 할것 같아요~ 일단 임시임당
 				JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-
-				// 이부분은 로그인하는 곳으로 옮기면 될것같아요 로그인이 완료 되면 소켓을 생성 + 패넣변경
-				client = new MultiClient();
-				String name = "임시 이름" + (int) (Math.random() * 10);
-				client.start(name); // 로그인이 되면 소켓을 연결한다..
-
+				/*
+				 * // 이부분은 로그인하는 곳으로 옮기면 될것같아요 로그인이 완료 되면 소켓을 생성 + 패넣변경 client = new
+				 * MultiClient(); String name = "임시 이름" + (int) (Math.random() * 10);
+				 * client.start(name); // 로그인이 되면 소켓을 연결한다..
+				 */
 				EnterPanel enterpanel = new EnterPanel();
 				MainPanel.frame.change(enterpanel);
 

@@ -1,5 +1,5 @@
 package controller;
 
-public class Controller {
+public class UserController {
  // 임시 파일 
 }
