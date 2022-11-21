@@ -52,6 +52,13 @@ public class LoginPanel extends JPanel {
 
 		btn_logindo.setBounds(120, 150, 95, 22);
 		btn_joindo.setBounds(40, 150, 95, 22);
+		
+		
+		btn_joindo.addActionListener(e -> {
+		// 화면이동 가입창으로~~ 	
+			
+			
+		});
 
 		add(btn_logindo);
 		add(btn_joindo);
@@ -62,15 +69,8 @@ public class LoginPanel extends JPanel {
 	public void LoginAction(ActionListener listener) {
 		btn_logindo.addActionListener(listener);
 	}
-	public void JoinAction(ActionListener listener) {
-		btn_joindo.addActionListener(listener);
-	}
-	
-	
-	String id;
-	String pw;
-//	String id = input_id.getText().trim();
-//	String pw = input_pw.getText().trim();
+
+
 
 	public JTextField getInput_id() {
 		return input_id;

@@ -4,21 +4,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import client.frame.JoinPanel;
 import client.frame.LoginPanel;
 
 public class UserController {
 
-	LoginPanel loginview;
+	JPanel userview; // login or join pan
 
 	public UserController(LoginPanel view) {
-		loginview = view;
+		userview = (LoginPanel) view;
+	}
+	public UserController(JoinPanel view) {
+		userview =(JoinPanel)  view;
 	}
 
 	public void loginActionListener() { // 로그인 버튼 눌렀을때
-		String id = loginview.getInput_id().getText().trim();
-		String pw = loginview.getInput_pw().getText().trim();
-		this.loginview.LoginAction(new ActionListener() {
+		String id = ((LoginPanel) userview).getInput_id().getText().trim();
+		String pw = ((LoginPanel) userview).getInput_pw().getText().trim();
+		((LoginPanel) this.userview).LoginAction(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -42,11 +47,10 @@ public class UserController {
 	}
 
 	public void joinActionListener() { // 회원가입 버튼 눌렀을때
-		this.loginview.LoginAction(new ActionListener() {
-
+		((JoinPanel) this.userview).JoinAction(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// joinpanel 만들어서 붙여주는 작업 
+				// 가입하는 창 
 
 			}
 		});
