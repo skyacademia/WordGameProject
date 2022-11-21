@@ -26,12 +26,13 @@ public class UserController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				client = new MultiClient();
-				String name = "임시 이름" + (int) (Math.random() * 10); // 구분자 
-				client.start(name); // 소켓 연결
 				
 				LoginPanel loginpan = new LoginPanel();
 				MainPanel.frame.change(loginpan);
+				
+				client = new MultiClient();
+				String name = "임시 이름" + (int) (Math.random() * 10); // 구분자 
+				client.start(name); // 소켓 연결
 			}
 
 		});
