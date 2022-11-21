@@ -6,20 +6,37 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import client.MultiClient;
 import client.frame.JoinPanel;
 import client.frame.LoginPanel;
+import client.frame.MainPanel;
 
 public class UserController {
 
 	JPanel userview; // login or join pan
-
-	public UserController(LoginPanel view) {
-		userview = (LoginPanel) view;
-	}
-	public UserController(JoinPanel view) {
-		userview =(JoinPanel)  view;
+	MultiClient client;
+ 
+	public UserController(JPanel view) {
+		userview = view;
 	}
 
+
+	public void Action01Listener() {
+		((MainPanel)this.userview).Action01(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				client = new MultiClient();
+				String name = "임시 이름" + (int) (Math.random() * 10); // 구분자 
+				client.start(name); // 소켓 연결
+				
+				LoginPanel loginpan = new LoginPanel();
+				MainPanel.frame.change(loginpan);
+			}
+
+		});
+	} 
+	
 	public void loginActionListener() { // 로그인 버튼 눌렀을때
 		String id = ((LoginPanel) userview).getInput_id().getText().trim();
 		String pw = ((LoginPanel) userview).getInput_pw().getText().trim();

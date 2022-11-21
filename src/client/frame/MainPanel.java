@@ -1,5 +1,7 @@
 package client.frame;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,7 +10,7 @@ import client.MultiClient;
 
 public class MainPanel extends JPanel {
 	public static MainFrame frame;
-	public MultiClient client;
+	JButton btn_enter;
 
 	public MainPanel(MainFrame frame) {
 
@@ -22,18 +24,10 @@ public class MainPanel extends JPanel {
 
 	private void setEnterButton() { // 입장하기 버튼
 		
-		JButton btn_enter = new JButton("입장하기");
+		btn_enter = new JButton("입장하기");
 		btn_enter.setBounds(70, 40, 150, 100);
 
-		btn_enter.addActionListener(e -> { // 로그인+회원가입창 나오게 함
-
-			LoginPanel loginpan = new LoginPanel();
-			MainPanel.frame.change(loginpan);
-
-		});
-
 		add(btn_enter);
-
 	}
 
 	private void showLogo() {
@@ -42,4 +36,14 @@ public class MainPanel extends JPanel {
 		hellolabel.setBounds(10, 30, 300, 22);
 		add(hellolabel);
 	}
+	
+	
+	
+	public void Action01(ActionListener listener) {
+		btn_enter.addActionListener(listener);
+	}
+	
+	
 }
+
+
