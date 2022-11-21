@@ -17,12 +17,12 @@ public class MainPanel extends JPanel {
 
 	}
 
-	private void setEnterButton() { // ÀÔÀåÇÏ±â ¹öÆ°
+	private void setEnterButton() { // ì…ì¥í•˜ê¸° ë²„íŠ¼
 		
-		JButton btn_enter = new JButton("ÀÔÀåÇÏ±â");
+		JButton btn_enter = new JButton("ì…ì¥í•˜ê¸°");
 		btn_enter.setBounds(70, 40, 150, 100);
 
-		btn_enter.addActionListener(e -> { // ·Î±×ÀÎ+È¸¿ø°¡ÀÔÃ¢ ³ª¿À°Ô ÇÔ
+		btn_enter.addActionListener(e -> { // ë¡œê·¸ì¸+íšŒì›ê°€ì…ì°½ ë‚˜ì˜¤ê²Œ í•¨
 
 			LoginPanel loginpan = new LoginPanel();
 			MainPanel.frame.change(loginpan);
@@ -35,7 +35,7 @@ public class MainPanel extends JPanel {
 
 	private void showLogo() {
 
-		JLabel hellolabel = new JLabel("³¡¸»ÀÕ±â °ÔÀÓÀÔ´Ï´Ù..(·Î°í°°Àº°Å ³Ö¾îµµ µÉ°Å°°°í¿ä...");
+		JLabel hellolabel = new JLabel("ëë§ì‡ê¸° ê²Œì„ì…ë‹ˆë‹¤..(ë¡œê³ ê°™ì€ê±° ë„£ì–´ë„ ë ê±°ê°™ê³ ìš”...");
 		hellolabel.setBounds(10, 30, 300, 22);
 		add(hellolabel);
 	}

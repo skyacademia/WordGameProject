@@ -22,9 +22,9 @@ public class MakeRoomPanel extends JPanel {
 	
 	private void setCreateform() {
 		input_roomname = new JTextField("", 20);
-		label_rname = new JLabel("¹æ Á¦¸ñ");
-		create_btn = new JButton("¸¸µé±â");
-		back_btn = new JButton("µÚ·Î");
+		label_rname = new JLabel("ë°© ì œëª©");
+		create_btn = new JButton("ë§Œë“¤ê¸°");
+		back_btn = new JButton("ë’¤ë¡œ");
 		
 		input_roomname.setBounds(110,50,90,22);
 		label_rname.setBounds(50,50,50,22);
@@ -39,7 +39,7 @@ public class MakeRoomPanel extends JPanel {
 		
 		
 		create_btn.addActionListener(e -> {
-			// GameRoom ÆÐÅ°Áö¿¡ ÀÖ´Â class µéÀÌ¶û ¿¬°áÇØ¾ß ÇÏ°í °ÔÀÓ È­¸éµµ ¸¸µé¾î¾ß ÇØ¿ë ¾ÆÁ÷ ¾È¸¸µë.. 
+			// GameRoom íŒ¨í‚¤ì§€ì— ìžˆëŠ” class ë“¤ì´ëž‘ ì—°ê²°í•´ì•¼ í•˜ê³  ê²Œìž„ í™”ë©´ë„ ë§Œë“¤ì–´ì•¼ í•´ìš© ì•„ì§ ì•ˆë§Œë“¬.. 
 			
 		});
 	
