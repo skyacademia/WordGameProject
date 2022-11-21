@@ -11,7 +11,7 @@ public class DBconn {
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("µå¶óÀÌ¹ö·Îµù¼º°ø");
+			System.out.println("ë“œë¼ì´ë²„ë¡œë”©ì„±ê³µ");
 
 			String url = "jdbc:mysql://localhost:3306/wordgamedb?serverTimezone=Asia/Seoul&jdbcCompliantTruncation=false";
 			String userId = "root";
@@ -20,10 +20,10 @@ public class DBconn {
 			return DriverManager.getConnection(url, userId, pass);
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("µå¶óÀÌ¹ö ·Îµù½ÇÆĞ");
+			System.out.println("ë“œë¼ì´ë²„ ë¡œë”©ì‹¤íŒ¨");
 
 		} catch (SQLException e) {
-			System.out.println("¿¬°á ½ÇÆĞ");
+			System.out.println("ì—°ê²° ì‹¤íŒ¨");
 		}
 		return null;
 	}

@@ -20,7 +20,7 @@ class SendThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			// ÃÖÃÊ1È¸´Â clientÀÇ nameÀ» ¼­¹ö¿¡ Àü¼Û
+			// ìµœì´ˆ1íšŒëŠ” clientì˜ nameì„ ì„œë²„ì— ì „ì†¡
 			PrintStream out = new PrintStream(socket.getOutputStream());
 			out.println(name);
 			out.flush();

@@ -14,14 +14,14 @@ public class EnterPanel extends JPanel {
 
 	private void enterMenu() {
 
-		JButton btn_game = new JButton("¹Ù·Î °ÔÀÓÇÏ±â");
-		JButton btn_makeroom = new JButton("¹æ ¸¸µé±â");
-		JLabel title = new JLabel("³¡¸»ÀÕ±â °ÔÀÓ¿¡ ¿À½Å°ÍÀ» È¯¿µ!");
+		JButton btn_game = new JButton("ë°”ë¡œ ê²Œìž„í•˜ê¸°");
+		JButton btn_makeroom = new JButton("ë°© ë§Œë“¤ê¸°");
+		JLabel title = new JLabel("ëë§ìž‡ê¸° ê²Œìž„ì— ì˜¤ì‹ ê²ƒì„ í™˜ì˜!");
 
-		btn_game.addActionListener(e -> { // °ÔÀÓ ¹æÀÌ ÀÖÀ¸¸é µé¾î°¡°Ô?
-			// ¸ð¸£°Ú¾î¿ä ¹öÆ° 1°³¸¸ ³õ±â ±×·¡¼­ ±×³É ³Ö¾î ºÃ¾î¿ä ÀÌºÎºÐ¿¡ ´ëÇØ ¾ê±â ³ª´©¾îº¸¸é ÁÁÀ»°Å°°¾Æ¿©
+		btn_game.addActionListener(e -> { // ê²Œìž„ ë°©ì´ ìžˆìœ¼ë©´ ë“¤ì–´ê°€ê²Œ?
+			// ëª¨ë¥´ê² ì–´ìš” ë²„íŠ¼ 1ê°œë§Œ ë†“ê¸° ê·¸ëž˜ì„œ ê·¸ëƒ¥ ë„£ì–´ ë´¤ì–´ìš” ì´ë¶€ë¶„ì— ëŒ€í•´ ì–˜ê¸° ë‚˜ëˆ„ì–´ë³´ë©´ ì¢‹ì„ê±°ê°™ì•„ì—¬
 		});
-		btn_makeroom.addActionListener(e -> { // ¹æ ¸¸µé±â Ã¢ ±¸Çö
+		btn_makeroom.addActionListener(e -> { // ë°© ë§Œë“¤ê¸° ì°½ êµ¬í˜„
 			MakeRoomPanel makeroompan =  new MakeRoomPanel();
 			MainPanel.frame.change(makeroompan);
 		});
