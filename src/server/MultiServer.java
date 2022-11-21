@@ -22,10 +22,10 @@ public class MultiServer {
 		try {
 			serverSocket = new ServerSocket(8000);
 			while (true) {
-				System.out.println("[Å¬¶óÀÌ¾ğÆ® ¿¬°á´ë±âÁß]");
+				System.out.println("[í´ë¼ì´ì–¸íŠ¸ ì—°ê²°ëŒ€ê¸°ì¤‘]");
 				socket = serverSocket.accept();
 				
-				// client°¡ Á¢¼ÓÇÒ¶§¸¶´Ù »õ·Î¿î ½º·¹µå »ı¼º
+				// clientê°€ ì ‘ì†í• ë•Œë§ˆë‹¤ ìƒˆë¡œìš´ ìŠ¤ë ˆë“œ ìƒì„±
 				ReceiveThread receiveThread = new ReceiveThread(socket);	
 				receiveThread.start();
 			
@@ -38,10 +38,10 @@ public class MultiServer {
 			if (serverSocket!=null) {
 				try {
 					serverSocket.close();
-					System.out.println("[¼­¹öÁ¾·á]");
+					System.out.println("[ì„œë²„ì¢…ë£Œ]");
 				} catch (IOException e) {
 					e.printStackTrace();
-					System.out.println("[¼­¹ö¼ÒÄÏÅë½Å¿¡·¯]");
+					System.out.println("[ì„œë²„ì†Œì¼“í†µì‹ ì—ëŸ¬]");
 				}
 			}
 		}
@@ -73,10 +73,10 @@ class ReceiveThread extends Thread {
 
 		String name = "";
 		try {
-			// ÃÖÃÊ1È¸´Â clientÀÌ¸§À» ¼ö½Å
+			// ìµœì´ˆ1íšŒëŠ” clientì´ë¦„ì„ ìˆ˜ì‹ 
 			name = in.readLine();
-			System.out.println("[" + name + " »õ¿¬°á»ı¼º]");	
-			sendAll("[" + name + "]´ÔÀÌ µé¾î¿À¼Ì½À´Ï´Ù.");
+			System.out.println("[" + name + " ìƒˆì—°ê²°ìƒì„±]");	
+			sendAll("[" + name + "]ë‹˜ì´ ë“¤ì–´ì˜¤ì…¨ìŠµë‹ˆë‹¤.");
 			
 			while (in != null) {
 				String inputMsg = in.readLine();
@@ -84,9 +84,9 @@ class ReceiveThread extends Thread {
 				sendAll(name + ">>" + inputMsg);
 			}
 		} catch (IOException e) {
-			System.out.println("[" + name + " Á¢¼Ó²÷±è]");
+			System.out.println("[" + name + " ì ‘ì†ëŠê¹€]");
 		} finally {
-			sendAll("[" + name + "]´ÔÀÌ ³ª°¡¼Ì½À´Ï´Ù");
+			sendAll("[" + name + "]ë‹˜ì´ ë‚˜ê°€ì…¨ìŠµë‹ˆë‹¤");
 			list.remove(out);
 			try {
 				socket.close();
@@ -94,7 +94,7 @@ class ReceiveThread extends Thread {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("[" + name + " ¿¬°áÁ¾·á]");
+		System.out.println("[" + name + " ì—°ê²°ì¢…ë£Œ]");
 	}
 	
 	private void sendAll (String s) {
