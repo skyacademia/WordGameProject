@@ -11,20 +11,20 @@ import Gameroom.Server.MultiServer;
 
 
 public class MultiClient {
-	Scanner scanner = new Scanner(System.in);
+//	Scanner scanner = new Scanner(System.in);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MultiServer multiClient = new MultiServer();
 		multiClient.start();
 	}
-	public void start() {
+	public void start(String name) {
 		Socket socket = null;
 		BufferedReader in = null;
 		try {
 			socket = new Socket("localhost", 8000);
 			System.out.println("[������ ����Ǿ����ϴ�]");
 
-			String name = scanner.nextLine();
+//			String name = scanner.nextLine();
 			Thread sendThread = new SendThread(socket, name);
 			sendThread.start();
 
@@ -45,6 +45,8 @@ public class MultiClient {
 		}
 		System.out.println("[���� ��������]");
 	}
+	
+
 }
 
 /*
