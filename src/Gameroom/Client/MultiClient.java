@@ -22,7 +22,7 @@ public class MultiClient {
 		BufferedReader in = null;
 		try {
 			socket = new Socket("localhost", 8000);
-			System.out.println("[¼­¹ö¿Í ¿¬°áµÇ¾ú½À´Ï´Ù]");
+			System.out.println("[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½]");
 
 			String name = scanner.nextLine();
 			Thread sendThread = new SendThread(socket, name);
@@ -31,11 +31,11 @@ public class MultiClient {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			while (in != null) {
 				String inputMsg = in.readLine();
-				if(("[" + name + "]´ÔÀÌ ³ª°¡¼Ì½À´Ï´Ù").equals(inputMsg)) break;
+				if(("[" + name + "]ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Ï´ï¿½").equals(inputMsg)) break;
 				System.out.println("From:" + inputMsg);
 			}
 		} catch (IOException e) {
-			System.out.println("[¼­¹ö Á¢¼Ó²÷±è]");
+			System.out.println("[ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½]");
 		} finally {
 			try {
 				socket.close();
@@ -43,37 +43,23 @@ public class MultiClient {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("[¼­¹ö ¿¬°áÁ¾·á]");
+		System.out.println("[ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]");
 	}
 }
 
-class SendThread extends Thread {
-	Socket socket = null;
-	String name;
-
-	Scanner scanner = new Scanner(System.in);
-	
-	public SendThread(Socket socket, String name) {
-		this.socket = socket;
-		this.name = name;
-	}
-
-	@Override
-	public void run() {
- 		try {
-			// ÃÖÃÊ1È¸´Â clientÀÇ nameÀ» ¼­¹ö¿¡ Àü¼Û
-			PrintStream out = new PrintStream(socket.getOutputStream());
-			out.println(name);
-			out.flush();
-			
-			while (true) {
-				String outputMsg = scanner.nextLine();
-				out.println(outputMsg);
-				out.flush();
-				if("quit".equals(outputMsg)) break;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-	}
-}
+/*
+ * class SendThread extends Thread { Socket socket = null; String name;
+ * 
+ * Scanner scanner = new Scanner(System.in);
+ * 
+ * public SendThread(Socket socket, String name) { this.socket = socket;
+ * this.name = name; }
+ * 
+ * @Override public void run() { try { // ï¿½ï¿½ï¿½ï¿½1È¸ï¿½ï¿½ clientï¿½ï¿½ nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * PrintStream out = new PrintStream(socket.getOutputStream());
+ * out.println(name); out.flush();
+ * 
+ * while (true) { String outputMsg = scanner.nextLine(); out.println(outputMsg);
+ * out.flush(); if("quit".equals(outputMsg)) break; } } catch (IOException e) {
+ * e.printStackTrace(); } } }
+ */
