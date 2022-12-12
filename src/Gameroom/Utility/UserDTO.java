@@ -25,7 +25,7 @@ public class UserDTO {
 		this.tie = tie;
 	}
 
-	
+	 
 	public boolean isState() {
 		return state;
 	}
