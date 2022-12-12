@@ -22,9 +22,7 @@ public class UserDTO {
 		this.lose = lose; 
 		this.tie = tie;
 	}
-	
-	
-	
+
 	
 	public Socket getUserSocket() {
 		return userSocket;

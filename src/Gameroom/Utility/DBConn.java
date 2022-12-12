@@ -14,7 +14,7 @@ public class DBConn {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("드라이버로딩성공");
 
-			String url = "jdbc:mysql://localhost:3306/wordgamedb?serverTimezone=Asia/Seoul&jdbcCompliantTruncation=false";
+			String url = "jdbc:mysql://localhost:3306/game_server?serverTimezone=Asia/Seoul&jdbcCompliantTruncation=false";
 			String userId = "root";
 			String pass = "1234";
 			

@@ -56,7 +56,6 @@ public class UserDAO {
 		try {
 			String sql = "select * from User_Info where id=? and pw=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-
 			pstmt.setString(1, nid);
 			pstmt.setString(2, npw);
 
