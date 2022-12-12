@@ -64,7 +64,9 @@ public class Controller {
 	public void makeLoginEvent() {
 		loginPanel.loginAction(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				ArrayList<String> list=loginPanel.getIdPw();
+
 				model.login(list.get(0), list.get(1));
 			}
 		});
