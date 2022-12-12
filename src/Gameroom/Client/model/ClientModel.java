@@ -32,10 +32,10 @@ public class ClientModel implements Runnable {
 		UserDTO loginuser = userdao.loginCheck(id, pw);
 
 		if (loginuser == null) {
-			System.out.println("실패");
+			System.out.println("false");
 
 		} else {
-			System.out.println("성공");
+			System.out.println("true");
 			try {
 				if (socket == null) {
 					socket = new Socket("localhost", 8000);
@@ -43,9 +43,9 @@ public class ClientModel implements Runnable {
 					loginuser.setUserSocket(socket);
 					
 					System.out.println("[서버와 연결되었습니다]");
-					writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-					reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				}
+
+					
+					}
 			} catch (UnknownHostException e) {
 				System.out.println("서버를 찾을 수 없습니다.");
 				e.printStackTrace();
@@ -53,18 +53,32 @@ public class ClientModel implements Runnable {
 			} catch (IOException e) {
 				System.out.println("[서버 접속끊김]");
 			}
-			try {
-				writer.write(id);
-				writer.write(pw);
-				writer.flush();
-				System.out.println("서버에 보낸 메시지 : " + id + "/" + pw);
-				System.out.println("서버에서 보낸 메시지 : " + reader.readLine());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
 		}
 	}
 
+	
+	private void chat(UserDTO user) {
+
+		Socket socket  = user.getUserSocket();
+		
+		try {
+			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
+			writer.write(user.getId());
+			writer.write(user.getPw());
+			
+			writer.flush();
+			System.out.println("서버에 보낸 메시지 : " + user.getId() + "/" + user.getPw());
+			System.out.println("서버에서 보낸 메시지 : " + reader.readLine());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
 	// 스레드 오버라이드
 	@Override
 	public void run() {
