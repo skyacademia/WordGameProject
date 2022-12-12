@@ -31,26 +31,19 @@ public class UserDAO {
 
 	}
 
-	public void create_table() {
-		Statement stmt = null;
-
-		try {
-			// DB와 연결된 conn 객체로부터 Statement 객체 획득.
-			stmt = conn.createStatement();
-
-			// query 만들기
-			StringBuilder sb = new StringBuilder();
-			String sql = sb.append("create table if not exists User_Info(").append("id varchar(30),")
-					.append("pw varchar(20),").append("win smallint,").append("lose smallint,").append("tie smallint")
-					.append(");").toString();
-
-			// query문 날리기
-			stmt.execute(sql);
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	/*
+	 * public void create_table() { Statement stmt = null;
+	 * 
+	 * try { // DB와 연결된 conn 객체로부터 Statement 객체 획득. stmt = conn.createStatement();
+	 * 
+	 * // query 만들기 StringBuilder sb = new StringBuilder(); String sql =
+	 * sb.append("create table if not exists User_Info(").append("id varchar(30),")
+	 * .append("pw varchar(20),").append("win smallint,").append("lose smallint,").
+	 * append("tie smallint") .append(");").toString();
+	 * 
+	 * // query문 날리기 stmt.execute(sql); stmt.close(); } catch (SQLException e) {
+	 * e.printStackTrace(); } }
+	 */
 
 	public void user_register(String nid, String npw) { // 회원가입
 		try {
@@ -74,7 +67,7 @@ public class UserDAO {
 		}
 	}
 
-	public String[] loginCheck(String nid, String npw) { // 로그인 
+	public UserDTO loginCheck(String nid, String npw) { // 로그인 
 		try {
 			String sql = "select * from User_Info where id=? and pw=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -94,10 +87,10 @@ public class UserDAO {
 			while(result.next()) {
 				String id = result.getString("id");
 				String pw = result.getString("pw");
-				String win = Integer.toString(result.getInt("win"));
-				String lose = Integer.toString(result.getInt("lose"));
-				String tie = Integer.toString(result.getInt("tie"));
-				return new String[]{id,pw,win,lose,tie};
+				int win = result.getInt("win");
+				int lose = result.getInt("lose");
+				int tie = result.getInt("tie");
+				return new UserDTO(id,pw,win,lose,tie);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
