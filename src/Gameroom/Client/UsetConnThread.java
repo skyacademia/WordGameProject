@@ -5,14 +5,14 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class SendThread extends Thread {
+public class UsetConnThread extends Thread {
 	
 	Socket socket = null;
 	String name;
 
 	Scanner scanner = new Scanner(System.in);
 
-	public SendThread(Socket socket, String name) {
+	public UsetConnThread(Socket socket, String name) {
 		this.socket = socket;
 		this.name = name;
 	}
