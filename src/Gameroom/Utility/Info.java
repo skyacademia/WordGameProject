@@ -10,5 +10,6 @@ public enum Info {
 	ATTACK,
 	DEFENCE,
 	SUCCESS,
-	FAIL
+	FAIL, 
+	FIND
 }
