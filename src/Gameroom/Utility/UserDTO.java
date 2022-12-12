@@ -8,9 +8,24 @@ public class UserDTO implements Serializable {
 	private int win;
 	private int lose;
 	private int tie;
+	private int state; 
+	
+	/* state 
+	 * 0 : 대기중 
+	 * 1 : 게임찾는중
+	 * 2 : 게임중 
+	 * */
+	
+	
 	
 	public String getId() {
 		return id;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
 	}
 	public void setId(String id) {
 		this.id = id;
