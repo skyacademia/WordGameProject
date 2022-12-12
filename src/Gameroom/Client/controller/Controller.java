@@ -65,16 +65,26 @@ public class Controller {
 		loginPanel.loginAction(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> list=loginPanel.getIdPw();
-				model.login(list.get(0), list.get(1));
-				mainFrame.change(lobbyPanel);
+				
+				if(model.login(list.get(0), list.get(1)) != null ) {
+
+					mainFrame.change(lobbyPanel);
+					
+				} else {
+					System.out.println("false");
+					
+				}
+				
 			}
 		});
 	}
-	
 	public void findUserEvent() {
 		lobbyPanel.startFind(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				model.findgame();
+				// Thread - Lambda Expression
+				new Thread(()->{
+					System.out.println("startfind");
+				}).start();
 			}
 		});
 	}
