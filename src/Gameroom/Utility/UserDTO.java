@@ -1,11 +1,14 @@
 package Gameroom.Utility;
 
+import java.net.Socket;
+
 public class UserDTO {
 	private String id;
 	private String pw;
 	private int win;
 	private int lose;
 	private int tie;
+	private Socket userSocket;
 	
 	
 	public UserDTO() {
@@ -21,6 +24,16 @@ public class UserDTO {
 	}
 	
 	
+	
+	
+	public Socket getUserSocket() {
+		return userSocket;
+	}
+
+	public void setUserSocket(Socket userSocket) {
+		this.userSocket = userSocket;
+	}
+
 	public String getId() {
 		return id;
 	}
