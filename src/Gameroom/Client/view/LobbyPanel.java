@@ -3,6 +3,7 @@ package Gameroom.Client.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +15,7 @@ import javax.swing.JTextField;
 
 public class LobbyPanel extends JPanel{
 	private JList userList;
-	
+	JButton enterBtn;
 
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
@@ -62,7 +63,7 @@ public class LobbyPanel extends JPanel{
 		JTextField input = new JTextField(); // 메세지를 작성하는 부분
 		
 		JButton sendBtn = new JButton("보내기");
-		JButton enterBtn = new JButton("빠른 시작");
+		enterBtn = new JButton("빠른 시작");
 		
 		JPanel chatPen = new JPanel(); // 프래임에 붙일 채팅부분 패널 
 		JPanel chatPenbtm = new JPanel(); // 밑에붙일 패널
@@ -84,7 +85,10 @@ public class LobbyPanel extends JPanel{
 
 	
 	
-
+	public void startFind(ActionListener listener) { // 게임 시작 
+		enterBtn.addActionListener(listener);
+	
+	}
 	
 
 }

@@ -18,21 +18,25 @@ import java.util.List;
 import Gameroom.Utility.DataDTO;
 import Gameroom.Utility.Info;
 import Gameroom.Utility.UserDAO;
+import Gameroom.Utility.UserDTO;
 
 public class MultiServer {
 	ServerSocket serverSocket;
+	Socket socket = null;
 	ArrayList<GameHandlerObject> list = new ArrayList<GameHandlerObject>();
 	private BufferedWriter writer;
 	private BufferedReader reader;
+	ObjectOutputStream senduser;
+	UserDAO userdao;
 
-	public static void main(String[] args) {
-		MultiServer multiServer = new MultiServer();
-		multiServer.start();
-	}
+	/*
+	 * public static void main(String[] args) { MultiServer multiServer = new
+	 * MultiServer(); multiServer.start(); }
+	 */
 
 	public void start() {
 		ServerSocket serverSocket = null;
-		Socket socket = null;
+		
 		while (true) {
 			try {
 				serverSocket = new ServerSocket();
@@ -40,10 +44,16 @@ public class MultiServer {
 				while (true) {
 					System.out.println("[클라이언트 연결대기중]");
 					socket = serverSocket.accept();
+					// mainpanel 에서 버튼을 누르면 소켓연결 
 					System.out.println("[클라이언트" + socket.getInetAddress() + " 접속]");
 					try { 
-						writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-						reader =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
+						writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); // 문자열
+						reader =  new BufferedReader(new InputStreamReader(socket.getInputStream())); // 문자열
+						
+						login(reader.readLine().split(","));
+						
+
+						
 					} catch (IOException e) {
 						e.printStackTrace();
 					}catch(NullPointerException e) {
@@ -77,7 +87,30 @@ public class MultiServer {
 			}
 		}
 	}
-}
+	
+	
+	
+	
+	private void login(String[] idpw) {
+		OutputStream os;
+		try {
+			os = socket.getOutputStream();
+	        senduser = new ObjectOutputStream(os); // 객체 보내기용 
+	        senduser.writeObject(userdao.loginCheck(idpw[0], idpw[1]));
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+}// multi server 
 
 class GameHandlerObject extends Thread {
 

@@ -78,6 +78,16 @@ public class Controller {
 			}
 		});
 	}
+	public void findUserEvent() {
+		lobbyPanel.startFind(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Thread - Lambda Expression
+				new Thread(()->{
+					System.out.println("startfind");
+				}).start();
+			}
+		});
+	}
 
 
 }

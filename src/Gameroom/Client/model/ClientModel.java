@@ -3,10 +3,11 @@ package Gameroom.Client.model;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.rmi.UnknownHostException;
 import java.util.HashMap;
 
 import Gameroom.Utility.DataDTO;
@@ -19,44 +20,54 @@ public class ClientModel implements Runnable {
 	Socket socket = null;
 	BufferedReader reader = null;
 	BufferedWriter writer = null;
+	ObjectInputStream receiver = null;
 	DataDTO dto = null;
 	String[] userInfoList = new String[5];
-	UserDAO userdao = new UserDAO();
 
 	public ClientModel() {
 
 	}
 
 	public UserDTO login(String id, String pw) {
+		UserDTO loginuser;
+		
+		try {
+			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); // 문자열 쓰기
+			reader = new BufferedReader(new InputStreamReader(socket.getInputStream())); // 문자열 읽기
+            InputStream is = socket.getInputStream();
+            receiver = new ObjectInputStream(is); // 오브젝트 
 
-		UserDTO loginuser = userdao.loginCheck(id, pw);
-
-		if (loginuser == null) {
-			System.out.println("false");
-			return null;
-
-		} else {
-			System.out.println("true");
-			try {
-				if (socket == null) {
-					socket = new Socket("localhost", 8000);
-					
-					loginuser.setUserSocket(socket);
-					
-					System.out.println("[서버와 연결되었습니다]");
-					}
-			} catch (UnknownHostException e) {
-				System.out.println("서버를 찾을 수 없습니다.");
-				e.printStackTrace();
-				System.exit(0);
-			} catch (IOException e) {
-				System.out.println("[서버 접속끊김]");
-			}
-			return loginuser;
+           
+			writer.write(id + "," + pw);
+			writer.flush();
 			
+			loginuser = (UserDTO) receiver.readObject();
+			if(loginuser == null) {
+				System.out.println("0");
+			} 			
+			System.out.println("서버에 보낸 메시지 : " + user.getId() + "/" + user.getPw());
+			System.out.println("서버에서 보낸 메시지 : " + reader.readLine());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+			return loginuser;
+		
 	}
 
+	
+	public Socket serverConnect() {
+		try {
+			return new Socket("localhost", 8000);
+			
+		} catch (java.net.UnknownHostException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	private void chat(UserDTO user) {
 
