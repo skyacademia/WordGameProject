@@ -45,18 +45,5 @@ public class LobbyPanel extends JPanel{
 	
 	
 	
-	/* 필요없어짐 ㅎ
-	 * public void makeUserList() { JScrollPane scrollPane = new JScrollPane();
-	 * scrollPane.setBounds(34, 211, 200, 548); add(scrollPane);
-	 * 
-	 * userList = new JList(); userList.setCellRenderer(new
-	 * DefaultListCellRenderer() {
-	 * 
-	 * @Override public int getHorizontalAlignment() { // TODO Auto-generated method
-	 * stub return CENTER; } }); // scrollPane.setViewportView(userList);
-	 * scrollPane.setViewportView(scrollPane);
-	 * 
-	 * }
-	 */
-	
+
 }

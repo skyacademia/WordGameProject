@@ -52,7 +52,7 @@ public class UserDAO {
 		}
 	}
 
-	public void user_register(String nid, String npw) {
+	public void user_register(String nid, String npw) { // 회원가입
 		try {
 			String sql = "insert into user_info(id,pw,win,lose,tie) values(?,?,0,0,0);";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -74,7 +74,7 @@ public class UserDAO {
 		}
 	}
 
-	public String[] loginCheck(String nid, String npw) {
+	public String[] loginCheck(String nid, String npw) { // 로그인 
 		try {
 			String sql = "select * from User_Info where id=? and pw=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class UserDAO {
 	}
 	
 
-	public void win(String nid) {
+	public void win(String nid) { // 승 추가 
 		try {
 			String sql = "update user_info set win = ? where id = ?;";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -124,7 +124,7 @@ public class UserDAO {
 		}
 	}
 
-	public void lose(String nid) {
+	public void lose(String nid) { // 패 추가 
 		try {
 			String sql = "update user_info set lose = ? where id = ?;";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -143,7 +143,7 @@ public class UserDAO {
 		}
 	}
 
-	public void tie(String nid) {
+	public void tie(String nid) { // 동점 추가 
 		try {
 			String sql = "update user_info set tie = ? where id = ?;";
 			PreparedStatement pstmt = conn.prepareStatement(sql);

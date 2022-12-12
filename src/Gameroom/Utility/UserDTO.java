@@ -6,6 +6,9 @@ public class UserDTO {
 	private int win;
 	private int lose;
 	private int tie;
+	
+	
+	
 	public String getId() {
 		return id;
 	}
