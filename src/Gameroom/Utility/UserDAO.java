@@ -11,24 +11,9 @@ public class UserDAO {
 
 	UserDTO dto = null;
 	Connection conn = null;
-	String url = "jdbc:mysql://localhost:3306/game_server?useSSL=false";
-	String id = "root";
-	String pw = "root";
 
 	public UserDAO() {
-		this.dto = new UserDTO();
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			this.conn = DriverManager.getConnection(url, id, pw);
-			System.out.println("Successfully Connected!");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		conn = DBConn.getConnection();
 	}
 
 	/*
