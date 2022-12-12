@@ -23,7 +23,7 @@ public class UserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	public UserDTO login(String userID, String userPassword) { // 어떤 계정에 대한 실제로 로그인을 시도하는 함수, 인자값으로 ID와 Password를 받아 login을 판단함.
 		String SQL = "SELECT * FROM user_info WHERE id = ? and pw=? "; // 실제로 DB에 입력될 명령어를 SQL 문장으로 만듬.
