@@ -23,5 +23,5 @@ public class ClientMain {
 		UserInfoFrame userInfoFrame = new UserInfoFrame(); // 유저 정보 패널
 		Controller controller = new Controller(mainFrame,loginPanel,ragisterPanel,lobbyPanel,mainPanel,makeGamePanel,userInfoFrame,model);
 		
-	} 
+	}
 }

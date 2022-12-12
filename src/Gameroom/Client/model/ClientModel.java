@@ -10,14 +10,14 @@ import Gameroom.Utility.DataDTO;
 import Gameroom.Utility.Info;
 import Gameroom.Utility.UserDTO;
 
-//import Gameroom.Client.MultiClient.SendThread;
 
 public class ClientModel implements Runnable {
 	Socket socket = null;
 	ObjectInputStream reader = null;
 	ObjectOutputStream writer = null;
-
+	UserDTO user = new UserDTO();
 	String[] userInfoList = new String[5];
+	DataDTO dto = null;
 
 	public ClientModel() {
 
@@ -63,7 +63,7 @@ public class ClientModel implements Runnable {
 	// 스레드 오버라이드
 	@Override
 	public void run() {
-		DataDTO dto = null;
+		
 		// 서버로부터 데이터 받기
 		try{
 			while(true){
@@ -82,8 +82,8 @@ public class ClientModel implements Runnable {
 					socket.close();
 					break;
 				} else if(dto.getCommand()==Info.LOGIN){
-					UserDTO userInfo = (UserDTO) dto.getData();
-					System.out.println(userInfo.getId()+"님 로그인이 되었습니다.");
+					user = (UserDTO) dto.getData();
+					System.out.println(user.getId()+"님 로그인이 되었습니다.");
 				} else if(dto.getCommand()==Info.SEND){
 					
 				}
@@ -103,7 +103,9 @@ public class ClientModel implements Runnable {
 	
 	public void sendMsg(String msg) {
 		
-		
+		dto.setMessage(msg);
+		dto.setData(user);
+		dto.setCommand(Info.SEND);
 		
 	}
 	public void findgame() {
@@ -117,4 +119,14 @@ public class ClientModel implements Runnable {
 	public Socket getsocket() {
 		return socket;
 	}
+
+	public UserDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserDTO user) {
+		this.user = user;
+	}
+	
+	
 }

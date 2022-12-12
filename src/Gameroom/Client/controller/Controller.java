@@ -82,8 +82,7 @@ public class Controller {
 		lobbyPanel.sendMsg(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.sendMsg(lobbyPanel.getMsg());
-				
-				
+
 			}
 		});
 	}

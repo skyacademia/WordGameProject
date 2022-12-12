@@ -9,7 +9,7 @@ public class UserDTO implements Serializable {
 	private int win;
 	private int lose;
 	private int tie;
-	private int state = 0; 
+	private int state; 
 	
 	/* state 
 	 * 0 : 대기중 (초기값)
@@ -17,8 +17,19 @@ public class UserDTO implements Serializable {
 	 * 2 : 게임중 
 	 * */
 	
+	public UserDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	
+	public UserDTO(String id, String pw, int win, int lose, int tie) {
+		this.id = id;
+		this.pw =pw;
+		this.win = win;
+		this.lose = lose; 
+		this.tie = tie;
+		state = 0;
+	}
+
 	public String getId() {
 		return id;
 	}
