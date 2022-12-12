@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 public class LobbyPanel extends JPanel{
 	private JList userList;
 	JButton enterBtn;
+	JButton sendBtn;
+	JTextField msginput;
 
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
@@ -60,9 +62,9 @@ public class LobbyPanel extends JPanel{
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // 항상 스크롤바가 세로로 떠있음
 
 		
-		JTextField input = new JTextField(); // 메세지를 작성하는 부분
+		msginput = new JTextField(); // 메세지를 작성하는 부분
 		
-		JButton sendBtn = new JButton("보내기");
+		sendBtn = new JButton("보내기");
 		enterBtn = new JButton("빠른 시작");
 		
 		JPanel chatPen = new JPanel(); // 프래임에 붙일 채팅부분 패널 
@@ -71,7 +73,7 @@ public class LobbyPanel extends JPanel{
 		chatPen.setLayout(new BorderLayout());
 		chatPenbtm.setLayout(new BorderLayout());
 		
-		chatPenbtm.add("Center", input); // 센터에 붙이기
+		chatPenbtm.add("Center", msginput); // 센터에 붙이기
 		chatPenbtm.add("East", sendBtn); // 동쪽에 붙이기
 		chatPenbtm.add("South", enterBtn); // 남쪽에 붙이기
 		
@@ -85,5 +87,12 @@ public class LobbyPanel extends JPanel{
 	
 	public void startFind(ActionListener listener) { // 게임 시작 
 		enterBtn.addActionListener(listener);
+	}
+	public void sendMsg(ActionListener listener) { // 게임 시작 
+		sendBtn.addActionListener(listener);
+	}
+	
+	public String getMsg() {
+		return msginput.getText();
 	}
 }

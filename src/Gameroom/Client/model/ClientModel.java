@@ -57,11 +57,6 @@ public class ClientModel implements Runnable {
 		t.start();
 	}
 	
-	public void findgame() {
-		
-		
-		
-	}
 
 	
 	
@@ -105,6 +100,20 @@ public class ClientModel implements Runnable {
 		return userInfoList;
 	}
 
+	
+	public void sendMsg(String msg) {
+		
+		
+		
+	}
+	public void findgame() {
+		
+		
+		
+	}
+
+	
+	
 	public Socket getsocket() {
 		return socket;
 	}

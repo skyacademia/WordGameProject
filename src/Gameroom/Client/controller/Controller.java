@@ -78,6 +78,15 @@ public class Controller {
 			}
 		});
 	}
+	public void sendMsgEvent() {
+		lobbyPanel.sendMsg(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.sendMsg(lobbyPanel.getMsg());
+				
+				
+			}
+		});
+	}
 
 
 }

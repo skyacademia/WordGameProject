@@ -11,6 +11,7 @@ public class DataDTO<T> implements Serializable{
 	private T data;
 	private Info command;
 	private String id;
+	private String message;
 	
 	public DataDTO() {	}
 	
@@ -32,5 +33,15 @@ public class DataDTO<T> implements Serializable{
 	public void setId(String id){
 		this.id= id;
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	
 	
 }
