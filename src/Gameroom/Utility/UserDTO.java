@@ -23,6 +23,7 @@ public class UserDTO {
 		this.win = win;
 		this.lose = lose; 
 		this.tie = tie;
+		state = false;
 	}
 
 	 
