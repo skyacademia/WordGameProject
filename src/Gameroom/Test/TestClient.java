@@ -11,26 +11,26 @@ public class TestClient {
     public static void main(String[] args) {
 
         try {
-            Socket socket = new Socket("localhost", 48612);
+            Socket socket = new Socket("localhost", 8000);
 
-            // ÀÔ·Â ½ºÆ®¸²
-            // ¼­¹ö¿¡¼­ º¸³½ µ¥ÀÌÅÍ¸¦ ¹ÞÀ½
+            // ï¿½Ô·ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     socket.getInputStream()));
 
-            // Ãâ·Â ½ºÆ®¸²
-            // ¼­¹ö¿¡ µ¥ÀÌÅÍ¸¦ ¼Û½Å
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Û½ï¿½
             OutputStream out = socket.getOutputStream();
 
-            // ¼­¹ö¿¡ µ¥ÀÌÅÍ ¼Û½Å
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û½ï¿½
             out.write("Hellow Java Tcp Client!!!! \n".getBytes());
             out.flush();
-            System.out.println("µ¥ÀÌÅÍ¸¦ ¼Û½Å ÇÏ¿´½À´Ï´Ù.");
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Û½ï¿½ ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 
             String line = in.readLine();
-            System.out.println("¼­¹ö·Î ºÎÅÍÀÇ ÀÀ´ä : "+line);
+            System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : "+line);
 
-            // ¼­¹ö Á¢¼Ó ²÷±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             in.close();
             out.close();
             socket.close();

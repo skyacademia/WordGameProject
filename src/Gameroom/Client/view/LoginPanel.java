@@ -1,5 +1,8 @@
 package Gameroom.Client.view;
 
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +22,7 @@ public class LoginPanel extends JPanel {
 
 	// 로그인 버튼, 가입버튼
 	JButton btn_logindo;
-	JButton btn_joindo;
+	JButton btn_registerdo;
 	
 	
 
@@ -50,23 +53,35 @@ public class LoginPanel extends JPanel {
 
 	private void setButtons() {
 
-		JButton btn_logindo = new JButton("로그인");
-		JButton btn_joindo = new JButton("가입하기");
+		this.btn_logindo = new JButton("로그인");
+		this.btn_registerdo = new JButton("가입하기");
 
 		btn_logindo.setBounds(120, 150, 95, 22);
-		btn_joindo.setBounds(40, 150, 95, 22);
+		btn_registerdo.setBounds(40, 150, 95, 22);
 		
-		ctl = new Controller();
-		btn_logindo.addActionListener(e -> {
-			ctl.login(input_id.getText(),input_pw.getText()); // 로그인 요청
-		});
-		btn_joindo.addActionListener(e -> {
-
-		});
+//		ctl = new Controller();
+//		btn_logindo.addActionListener(e -> {
+//			ctl.login(input_id.getText(),input_pw.getText()); // 로그인 요청
+//		});
+//		btn_joindo.addActionListener(e -> {
+//
+//		});
 
 		add(btn_logindo);
-		add(btn_joindo);
+		add(btn_registerdo);
 
+	}
+	public void loginAction(ActionListener listener) {
+		btn_logindo.addActionListener(listener);
+	}
+	public void registerAction(ActionListener listener){
+		btn_registerdo.addActionListener(listener);
+	}
+	public ArrayList<String> getIdPw(){
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(this.input_id.getText());
+		list.add(this.input_pw.getText());
+		return list;
 	}
 
 }

@@ -1,105 +1,120 @@
 package Gameroom.Server;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import Gameroom.Client.MultiClient;
-
+import Gameroom.Utility.DataDTO;
+import Gameroom.Utility.Info;
+import Gameroom.Utility.UserDAO;
 
 public class MultiServer {
+	ServerSocket serverSocket;
+	ArrayList<GameHandlerObject> list = new ArrayList<GameHandlerObject>();
+	private BufferedWriter writer;
+	private BufferedReader reader;
 
 	public static void main(String[] args) {
-		MultiClient multiServer = new MultiClient();
+		MultiServer multiServer = new MultiServer();
 		multiServer.start();
 	}
+
 	public void start() {
 		ServerSocket serverSocket = null;
 		Socket socket = null;
-		try {
-			serverSocket = new ServerSocket(8000);
-			while (true) {
-				System.out.println("[Å¬¶óÀÌ¾ğÆ® ¿¬°á´ë±âÁß]");
-				socket = serverSocket.accept();
-				
-				// client°¡ Á¢¼ÓÇÒ¶§¸¶´Ù »õ·Î¿î ½º·¹µå »ı¼º
-				ReceiveThread receiveThread = new ReceiveThread(socket);	
-				receiveThread.start();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (serverSocket!=null) {
-				try {
-					serverSocket.close();
-					System.out.println("[¼­¹öÁ¾·á]");
-				} catch (IOException e) {
-					e.printStackTrace();
-					System.out.println("[¼­¹ö¼ÒÄÏÅë½Å¿¡·¯]");
+		while (true) {
+			try {
+				serverSocket = new ServerSocket();
+				serverSocket.bind(new InetSocketAddress(8000));
+				while (true) {
+					System.out.println("[í´ë¼ì´ì–¸íŠ¸ ì—°ê²°ëŒ€ê¸°ì¤‘]");
+					socket = serverSocket.accept();
+					System.out.println("[í´ë¼ì´ì–¸íŠ¸" + socket.getInetAddress() + " ì ‘ì†]");
+					try { 
+						writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+						reader =  new BufferedReader(new InputStreamReader(socket.getInputStream()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}catch(NullPointerException e) {
+						e.printStackTrace();
+					}
+					while (reader != null) {
+						try {
+							System.out.println("ë³´ë‚¸ ë©”ì‹œì§€ : "+reader.readLine());
+							System.out.println("ë³´ë‚¸ ë©”ì‹œì§€ : "+reader.readLine());
+							writer.write("hello world!");
+							writer.flush();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					// clientê°€ ì ‘ì†í• ë•Œë§ˆë‹¤ ìƒˆë¡œìš´ ìŠ¤ë ˆë“œ ìƒì„±
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (serverSocket != null) {
+					try {
+						serverSocket.close();
+						System.out.println("[ì„œë²„ì¢…ë£Œ]");
+					} catch (IOException e) {
+						e.printStackTrace();
+						System.out.println("[ì„œë²„ì†Œì¼“í†µì‹ ì—ëŸ¬]");
+					}
 				}
 			}
 		}
 	}
 }
-class ReceiveThread extends Thread {
-	
-	static List<PrintWriter> list = 
-			Collections.synchronizedList(new ArrayList<PrintWriter>());
-	
+
+class GameHandlerObject extends Thread {
+
+	List<GameHandlerObject> list;
 	Socket socket = null;
-	BufferedReader in = null;
-	PrintWriter out = null;
-			
-	public ReceiveThread (Socket socket) {
+	BufferedReader reader = null;
+	BufferedWriter writer = null;
+
+	public GameHandlerObject(Socket socket, List<GameHandlerObject> list) {
 		this.socket = socket;
-		try {
-			out = new PrintWriter(socket.getOutputStream());
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			list.add(out);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+		this.list = list;
 		
+	}
+
 	@Override
 	public void run() {
-
-		String name = "";
 		try {
-			// ÃÖÃÊ1È¸´Â clientÀÌ¸§À» ¼ö½Å
-			name = in.readLine();
-			System.out.println("[" + name + " »õ¿¬°á»ı¼º]");	
-			sendAll("[" + name + "]´ÔÀÌ µé¾î¿À¼Ì½À´Ï´Ù.");
+			// ìµœì´ˆ1íšŒëŠ” clientì´ë¦„ì„ ìˆ˜ì‹ 
+			System.out.println("[í´ë¼ì´ì–¸íŠ¸ ë¡œê·¸ì¸]");
+//			sendAll("[" + name + "]ë‹˜ì´ ë“¤ì–´ì˜¤ì…¨ìŠµë‹ˆë‹¤.");
+//			
 			
-			while (in != null) {
-				String inputMsg = in.readLine();
-				if("quit".equals(inputMsg)) break;
-				sendAll(name + ">>" + inputMsg);
-			}
-		} catch (IOException e) {
-			System.out.println("[" + name + " Á¢¼Ó²÷±è]");
 		} finally {
-			sendAll("[" + name + "]´ÔÀÌ ³ª°¡¼Ì½À´Ï´Ù");
-			list.remove(out);
-			try {
-				socket.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//			sendAll("[" + name + "]ë‹˜ì´ ë‚˜ê°€ì…¨ìŠµë‹ˆë‹¤");
+//			list.remove(out);
+			if ( writer != null) try{writer.close();} catch(IOException e){}
+			if ( reader != null) try{reader.close();} catch(IOException e){}
+
+            if ( socket != null) try{socket.close();} catch(IOException e){}
 		}
-		System.out.println("[" + name + " ¿¬°áÁ¾·á]");
+		System.out.println("[ í´ë¼ì´ì–¸íŠ¸ ì—°ê²°ì¢…ë£Œ]");
 	}
-	
-	private void sendAll (String s) {
-		for (PrintWriter out: list) {
-			out.println(s);
-			out.flush();
-		}
-	}
+
+//	private void sendAll (String s) {
+//		for (PrintWriter out: list) {
+//			out.println(s);
+//			out.flush();
+//		}
+//	}
 }

@@ -15,12 +15,7 @@ public class MainFrame extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH); // 전체화면
 		/* setUndecorated(true); */
 
-
 		setLocationRelativeTo(null);
-
-		mainpanel = new MainPanel(this);
-		getContentPane().add(mainpanel); // main패널 보여주기
-
 		setResizable(false);
 		setVisible(true);
 	}
