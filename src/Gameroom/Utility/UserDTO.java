@@ -7,6 +7,11 @@ public class UserDTO {
 	private int lose;
 	private int tie;
 	
+	
+	public UserDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public UserDTO(String id, String pw, int win, int lose, int tie) {
 		this.id = id;
 		this.pw =pw;
