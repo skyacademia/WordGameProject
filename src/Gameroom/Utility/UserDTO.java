@@ -9,8 +9,10 @@ public class UserDTO {
 	private int lose;
 	private int tie;
 	private Socket userSocket;
+	private boolean state;
 	
 	
+
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -21,6 +23,15 @@ public class UserDTO {
 		this.win = win;
 		this.lose = lose; 
 		this.tie = tie;
+	}
+
+	
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 
 	
