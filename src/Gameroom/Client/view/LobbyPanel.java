@@ -29,19 +29,9 @@ public class LobbyPanel extends JPanel{
 
 	private void enterMenu() {
 		JPanel enterPan = new JPanel();
-		JButton btn_game = new JButton("게임하기"); 
 		JLabel title = new JLabel("끝말잇기 게임에 오신것을 환영!");
 
-//		btn_game.addActionListener(e -> { 
-//			MakeGamePanel makeGamepan =  new MakeGamePanel();
-//			MainPanel.frame.change(makeGamepan);
-//		});
-
-		/*
-		 * title.setBounds(30, 20, 300, 22); btn_game.setBounds(70, 32, 150, 60);
-		 */
 		enterPan.add(title);
-		enterPan.add(btn_game);
 		add(enterPan, "North"); // 위에 붙임 
 
 
@@ -49,7 +39,7 @@ public class LobbyPanel extends JPanel{
 	
 	private void enterChat() { // 채팅장 ui
 		
-		JList chatuserList = new JList(); // 대기실 채팅 유저리스트
+		JList chatuserList = new JList(); // 대기실 채팅 유저리스트 + 모델 추가 해야함 
 		chatuserList.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		chatuserList.setFocusable(false);
 		JScrollPane chatListPane = new JScrollPane(chatuserList); // 스크롤 
