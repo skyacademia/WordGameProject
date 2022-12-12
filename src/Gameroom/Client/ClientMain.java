@@ -2,7 +2,13 @@ package Gameroom.Client;
 
 import Gameroom.Client.controller.Controller;
 import Gameroom.Client.model.ClientModel;
-import Gameroom.Client.view.*;
+import Gameroom.Client.view.LobbyPanel;
+import Gameroom.Client.view.LoginPanel;
+import Gameroom.Client.view.MainFrame;
+import Gameroom.Client.view.MainPanel;
+import Gameroom.Client.view.MakeGamePanel;
+import Gameroom.Client.view.RegisterPanel;
+import Gameroom.Client.view.UserInfoFrame;
 
 public class ClientMain {
 

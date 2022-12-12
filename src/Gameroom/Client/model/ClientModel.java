@@ -40,10 +40,14 @@ public class ClientModel implements Runnable {
 		}
 		try {
 			DataDTO<String[]> sendDTO = new DataDTO<String[]>();
+			
 			sendDTO.setData(new String[] {id,pw});
 			sendDTO.setCommand(Info.LOGIN);
+			
 			writer.writeObject(sendDTO);
 			writer.flush();
+			
+			
 			System.out.println("서버에 보낸 메시지 : " + id + "/"+pw);
 			
 		} catch (IOException e) {
