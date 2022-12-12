@@ -114,6 +114,9 @@ class GameHandlerObject extends Thread {
 					writer.writeObject(sendDto);
 					writer.flush();
 				} else if(dto.getCommand()==Info.SEND){
+					broadcast(dto);
+					
+					
 					
 				} else if(dto.getCommand() == Info.MAKEROOM) { 
 					// 상대 찾기 

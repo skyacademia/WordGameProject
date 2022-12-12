@@ -106,6 +106,13 @@ public class ClientModel implements Runnable {
 		dto.setMessage(msg);
 		dto.setData(user);
 		dto.setCommand(Info.SEND);
+		try {
+			writer.writeObject(dto);
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	public void findgame() {
