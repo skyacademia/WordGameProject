@@ -19,7 +19,7 @@ public class LobbyPanel extends JPanel{
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
 		enterMenu();
-
+		enterChat();
 	}
 
 	private void enterMenu() {
@@ -42,7 +42,7 @@ public class LobbyPanel extends JPanel{
 
 	}
 	
-	private void enterChat() {
+	private void enterChat() { // 채팅장 ui
 
 		
 		JTextArea chatuserList = new JTextArea(); // 대기실 채팅 유저리스트
