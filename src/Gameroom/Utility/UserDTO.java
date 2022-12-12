@@ -7,6 +7,13 @@ public class UserDTO {
 	private int lose;
 	private int tie;
 	
+	public UserDTO(String id, String pw, int win, int lose, int tie) {
+		this.id = id;
+		this.pw =pw;
+		this.win = win;
+		this.lose = lose; 
+		this.tie = tie;
+	}
 	
 	
 	public String getId() {
