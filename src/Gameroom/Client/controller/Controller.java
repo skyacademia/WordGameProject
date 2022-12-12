@@ -64,10 +64,17 @@ public class Controller {
 	public void makeLoginEvent() {
 		loginPanel.loginAction(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				ArrayList<String> list=loginPanel.getIdPw();
+				
+				if(model.login(list.get(0), list.get(1)) != null ) {
 
-				model.login(list.get(0), list.get(1));
+					mainFrame.change(lobbyPanel);
+					
+				} else {
+					System.out.println("false");
+					
+				}
+				
 			}
 		});
 	}

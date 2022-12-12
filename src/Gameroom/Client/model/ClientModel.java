@@ -27,12 +27,13 @@ public class ClientModel implements Runnable {
 
 	}
 
-	public void login(String id, String pw) {
+	public UserDTO login(String id, String pw) {
 
 		UserDTO loginuser = userdao.loginCheck(id, pw);
 
 		if (loginuser == null) {
 			System.out.println("false");
+			return null;
 
 		} else {
 			System.out.println("true");
@@ -43,8 +44,6 @@ public class ClientModel implements Runnable {
 					loginuser.setUserSocket(socket);
 					
 					System.out.println("[서버와 연결되었습니다]");
-
-					
 					}
 			} catch (UnknownHostException e) {
 				System.out.println("서버를 찾을 수 없습니다.");
@@ -53,6 +52,7 @@ public class ClientModel implements Runnable {
 			} catch (IOException e) {
 				System.out.println("[서버 접속끊김]");
 			}
+			return loginuser;
 			
 		}
 	}
