@@ -84,10 +84,7 @@ public class LobbyPanel extends JPanel{
 
 	
 	
-	public static void main(String[] args) {
-		new LobbyPanel();
-	}
-	
+
 	
 
 }
