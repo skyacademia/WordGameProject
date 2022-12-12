@@ -34,7 +34,7 @@ public class UserDTO {
 		this.state = state;
 	}
 
-	
+	 
 	public Socket getUserSocket() {
 		return userSocket;
 	}
