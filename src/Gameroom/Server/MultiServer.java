@@ -115,6 +115,10 @@ class GameHandlerObject extends Thread {
 					writer.flush();
 				} else if(dto.getCommand()==Info.SEND){
 					
+				} else if(dto.getCommand() == Info.FIND) {
+					// 상대 찾기 
+					
+					
 				}
 			}//while
 

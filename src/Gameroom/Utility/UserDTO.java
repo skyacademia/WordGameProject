@@ -3,15 +3,16 @@ package Gameroom.Utility;
 import java.io.Serializable;
 
 public class UserDTO implements Serializable {
+
 	private String id;
 	private String pw;
 	private int win;
 	private int lose;
 	private int tie;
-	private int state; 
+	private int state = 0; 
 	
 	/* state 
-	 * 0 : 대기중 
+	 * 0 : 대기중 (초기값)
 	 * 1 : 게임찾는중
 	 * 2 : 게임중 
 	 * */

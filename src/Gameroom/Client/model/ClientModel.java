@@ -1,20 +1,13 @@
 package Gameroom.Client.model;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.rmi.UnknownHostException;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import Gameroom.Utility.DataDTO;
 import Gameroom.Utility.Info;
-import Gameroom.Utility.UserDAO;
 import Gameroom.Utility.UserDTO;
 
 //import Gameroom.Client.MultiClient.SendThread;
@@ -59,7 +52,15 @@ public class ClientModel implements Runnable {
 		Thread t = new Thread(this);
 		t.start();
 	}
+	
+	public void findgame() {
+		
+		
+		
+	}
 
+	
+	
 	// 스레드 오버라이드
 	@Override
 	public void run() {
