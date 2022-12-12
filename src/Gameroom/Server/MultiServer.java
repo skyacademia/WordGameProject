@@ -104,6 +104,8 @@ class GameHandlerObject extends Thread {
 				} else if(dto.getCommand()==Info.LOGIN){
 					String[] userInfo = (String[]) dto.getData();
 					UserDAO dao = new UserDAO();
+					
+					// login do
 					UserDTO userdto =dao.login(userInfo[0],userInfo[1]);
 					System.out.println(userdto.getId()+" 로그인 승인");
 					DataDTO<UserDTO> sendDto = new DataDTO<UserDTO>();
