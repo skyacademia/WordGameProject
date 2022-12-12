@@ -17,7 +17,7 @@ public class ClientModel implements Runnable {
 	ObjectOutputStream writer = null;
 	UserDTO user = new UserDTO();
 	String[] userInfoList = new String[5];
-	DataDTO dto = null;
+	DataDTO<UserDTO> dto = null;
 
 	public ClientModel() {
 
