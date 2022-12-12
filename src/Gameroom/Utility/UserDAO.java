@@ -34,7 +34,7 @@ public class UserDAO {
 		}
 	}
 
-	public UserDTO loginCheck(String nid, String npw) { // 로그인 
+	public UserDTO login(String nid, String npw) { // 로그인 
 		conn = dbConn.getConnection();
 		UserDTO user = null;
 		try {
