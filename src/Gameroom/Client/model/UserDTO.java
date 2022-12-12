@@ -1,13 +1,36 @@
 package Gameroom.Client.model;
 
+import java.net.Socket;
+
+import Gameroom.Server.GameRoom;
+
 public class UserDTO {
 	
-	String id, pw;
+	private int key; // user unique id
+	private String id, pw; // login id pw
+	private int win, lose, tie;  // game result
+	private GameRoom room; 	// playing gameroom 
+	private Socket userSock; // socket 
 	
-	int win, lose, tie; 
 	
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public GameRoom getRoom() {
+		return room;
+	}
+
+	public void setRoom(GameRoom room) {
+		this.room = room;
+	}
+
+	public Socket getUserSock() {
+		return userSock;
+	}
+
+	public void setUserSock(Socket userSock) {
+		this.userSock = userSock;
 	}
 
 	public String getId() {
