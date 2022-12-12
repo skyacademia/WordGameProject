@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package Gameroom.Utility;
 
 public enum Info {
@@ -13,18 +12,3 @@ public enum Info {
 	SUCCESS,
 	FAIL
 }
-=======
-package Gameroom.Utility;
-
-public enum Info {
-	LOGIN,
-	LOGOUT,
-	MAKEROOM,
-	ENTRANCEROOM,
-	EXITROOM,
-	ATTACK,
-	DEFENCE,
-	SUCCESS,
-	FAIL
-}
->>>>>>> branch 'main' of https://github.com/skyacademia/WordGameProject.git
