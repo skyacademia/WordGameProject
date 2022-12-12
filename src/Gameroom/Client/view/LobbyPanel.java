@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -18,6 +19,7 @@ public class LobbyPanel extends JPanel{
 	JButton enterBtn;
 	JButton sendBtn;
 	JTextField msginput;
+	DefaultListModel<String> onUserModel;
 
 	public LobbyPanel() {
 		setLayout(new BorderLayout());
@@ -46,15 +48,16 @@ public class LobbyPanel extends JPanel{
 	}
 	
 	private void enterChat() { // 채팅장 ui
-
 		
-		JTextArea chatuserList = new JTextArea(); // 대기실 채팅 유저리스트
+		JList chatuserList = new JList(); // 대기실 채팅 유저리스트
 		chatuserList.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		chatuserList.setEditable(false);
+		chatuserList.setFocusable(false);
 		JScrollPane chatListPane = new JScrollPane(chatuserList); // 스크롤 
 		chatListPane.setPreferredSize(new Dimension(200, 500)); // 원하는 길이 지정
 		chatListPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // 항상 스크롤바가 세로로 떠있음
-
+		
+		
+		
 		JTextArea output  = new JTextArea(); // 보여지는 부분
 		output.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		output.setEditable(false);
@@ -95,4 +98,14 @@ public class LobbyPanel extends JPanel{
 	public String getMsg() {
 		return msginput.getText();
 	}
+
+	public DefaultListModel<String> getOnUserModel() {
+		return onUserModel;
+	}
+
+	public void setOnUserModel(DefaultListModel<String> onUserModel) {
+		this.onUserModel = onUserModel;
+	}
+	
+	
 }

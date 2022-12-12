@@ -4,16 +4,46 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
 
 public class UserDAO {
 
 	UserDTO dto = null;
 	Connection conn = null;
 	DBConn dbConn = new DBConn();
+	DefaultTableModel userModel;
 
 	public UserDAO() {
 		
 	}
+
+	public DefaultTableModel getOnUserList(String nid, String npw) { // 로그인 
+		conn = dbConn.getConnection();
+		Vector<String> userOnList = new Vector();
+		
+		
+		try {
+			String sql = "select id from User_Info";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet result = pstmt.executeQuery();
+
+			while(result.next()) {
+				userOnList.add(result.getString(0));
+			}
+			userModel = new DefaultTableModel(userOnList.size(),0);
+			userModel.addRow(userOnList);
+
+			dbConn.clear(result, conn, pstmt);
+			return userModel;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userModel;
+	}
+	
 
 	public void user_register(String nid, String npw) { // 회원가입
 		Connection conn = dbConn.getConnection();
