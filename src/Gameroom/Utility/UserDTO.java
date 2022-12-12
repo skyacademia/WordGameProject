@@ -1,49 +1,14 @@
 package Gameroom.Utility;
 
-import java.net.Socket;
+import java.io.Serializable;
 
-public class UserDTO {
+public class UserDTO implements Serializable {
 	private String id;
 	private String pw;
 	private int win;
 	private int lose;
 	private int tie;
-	private Socket userSocket;
-	private boolean state;
 	
-	
-
-	public UserDTO() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public UserDTO(String id, String pw, int win, int lose, int tie) {
-		this.id = id;
-		this.pw =pw;
-		this.win = win;
-		this.lose = lose; 
-		this.tie = tie;
-		state = false;
-	}
-
-	 
-	public boolean isState() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
-	}
-
-	 
-	public Socket getUserSocket() {
-		return userSocket;
-	}
-
-	public void setUserSocket(Socket userSocket) {
-		this.userSocket = userSocket;
-	}
-
 	public String getId() {
 		return id;
 	}

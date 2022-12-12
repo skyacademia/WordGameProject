@@ -4,12 +4,13 @@ import java.io.Serializable;
 
 public class DataDTO<T> implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private T data;
 	private Info command;
+	private String id;
 	
 	public DataDTO() {	}
 	
@@ -25,4 +26,11 @@ public class DataDTO<T> implements Serializable{
 	public void setData(T data){
 		this.data= data; 
 	}
+	public String getId(){
+		return id;
+	}
+	public void setId(String id){
+		this.id= id;
+	}
+	
 }

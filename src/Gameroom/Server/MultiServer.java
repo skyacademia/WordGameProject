@@ -22,21 +22,11 @@ import Gameroom.Utility.UserDTO;
 
 public class MultiServer {
 	ServerSocket serverSocket;
-	Socket socket = null;
 	ArrayList<GameHandlerObject> list = new ArrayList<GameHandlerObject>();
-	private BufferedWriter writer;
-	private BufferedReader reader;
-	ObjectOutputStream senduser;
-	UserDAO userdao;
-
-	/*
-	 * public static void main(String[] args) { MultiServer multiServer = new
-	 * MultiServer(); multiServer.start(); }
-	 */
 
 	public void start() {
 		ServerSocket serverSocket = null;
-		
+		Socket socket = null;
 		while (true) {
 			try {
 				serverSocket = new ServerSocket();
@@ -44,33 +34,11 @@ public class MultiServer {
 				while (true) {
 					System.out.println("[클라이언트 연결대기중]");
 					socket = serverSocket.accept();
-					// mainpanel 에서 버튼을 누르면 소켓연결 
 					System.out.println("[클라이언트" + socket.getInetAddress() + " 접속]");
-					try { 
-						writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())); // 문자열
-						reader =  new BufferedReader(new InputStreamReader(socket.getInputStream())); // 문자열
-						
-						login(reader.readLine().split(","));
-						
-
-						
-					} catch (IOException e) {
-						e.printStackTrace();
-					}catch(NullPointerException e) {
-						e.printStackTrace();
-					}
-					while (reader != null) {
-						try {
-							System.out.println("보낸 메시지 : "+reader.readLine());
-							System.out.println("보낸 메시지 : "+reader.readLine());
-							writer.write("hello world!");
-							writer.flush();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
 					// client가 접속할때마다 새로운 스레드 생성
+					GameHandlerObject handler = new  GameHandlerObject(socket,list);
+					handler.start();  //스레드 시작- 스레드 실행
+					list.add(handler); 
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -87,61 +55,80 @@ public class MultiServer {
 			}
 		}
 	}
-	
-	
-	
-	
-	private void login(String[] idpw) {
-		OutputStream os;
-		try {
-			os = socket.getOutputStream();
-	        senduser = new ObjectOutputStream(os); // 객체 보내기용 
-	        senduser.writeObject(userdao.loginCheck(idpw[0], idpw[1]));
-	        
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	
-	
-	
-	
-	
-	
-}// multi server 
+}
 
 class GameHandlerObject extends Thread {
 
 	List<GameHandlerObject> list;
 	Socket socket = null;
-	BufferedReader reader = null;
-	BufferedWriter writer = null;
+	ObjectInputStream reader;
+	ObjectOutputStream writer;
 
 	public GameHandlerObject(Socket socket, List<GameHandlerObject> list) {
 		this.socket = socket;
 		this.list = list;
-		
+		try {
+			writer = new ObjectOutputStream(socket.getOutputStream());
+			reader = new ObjectInputStream(socket.getInputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void run() {
-		try {
-			// 최초1회는 client이름을 수신
-			System.out.println("[클라이언트 로그인]");
-//			sendAll("[" + name + "]님이 들어오셨습니다.");
-//			
-			
-		} finally {
-//			sendAll("[" + name + "]님이 나가셨습니다");
-//			list.remove(out);
-			if ( writer != null) try{writer.close();} catch(IOException e){}
-			if ( reader != null) try{reader.close();} catch(IOException e){}
+		DataDTO dto = null;
+		String id;
+		try{
+			while(true){
+				dto=(DataDTO)reader.readObject();
 
-            if ( socket != null) try{socket.close();} catch(IOException e){}
+				
+				//System.out.println("배열 크기:"+ar.length);
+				//사용자가 접속을 끊었을 경우. 프로그램을 끝내서는 안되고 남은 사용자들에게 퇴장메세지를 보내줘야 한다. 
+				if(dto.getCommand()==Info.LOGOUT){
+					DataDTO sendDto = new DataDTO();
+					//나가려고 exit를 보낸 클라이언트에게 답변 보내기
+					sendDto.setCommand(Info.LOGOUT);
+					writer.writeObject(sendDto);
+					writer.flush();
+
+					reader.close();
+					writer.close();
+					socket.close();
+					//남아있는 클라이언트에게 퇴장메세지 보내기
+					list.remove(this);
+
+					break;
+				} else if(dto.getCommand()==Info.LOGIN){
+					String[] userInfo = (String[]) dto.getData();
+					UserDAO dao = new UserDAO();
+					UserDTO userdto =dao.login(userInfo[0],userInfo[1]);
+					System.out.println(userdto.getId()+" 로그인 승인");
+					DataDTO<UserDTO> sendDto = new DataDTO<UserDTO>();
+					sendDto.setCommand(Info.LOGIN);
+					sendDto.setData(userdto);
+					writer.writeObject(sendDto);
+					writer.flush();
+				} else if(dto.getCommand()==Info.SEND){
+					
+				}
+			}//while
+
+		} catch(IOException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e){
+			e.printStackTrace();
+		}	
+	}
+	
+	//다른 클라이언트에게 전체 메세지 보내주기
+	public void broadcast(DataDTO sendDto) throws IOException {
+		for(GameHandlerObject handler: list){
+			handler.writer.writeObject(sendDto); //핸들러 안의 writer에 값을 보내기
+			handler.writer.flush();  //핸들러 안의 writer 값 비워주기
 		}
-		System.out.println("[ 클라이언트 연결종료]");
 	}
 
 //	private void sendAll (String s) {

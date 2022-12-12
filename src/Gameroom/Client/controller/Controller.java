@@ -65,19 +65,11 @@ public class Controller {
 		loginPanel.loginAction(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> list=loginPanel.getIdPw();
-				
-				if(model.login(list.get(0), list.get(1)) != null ) {
-
-					mainFrame.change(lobbyPanel);
-					
-				} else {
-					System.out.println("false");
-					
-				}
-				
+				model.login(list.get(0), list.get(1));
 			}
 		});
 	}
+	
 	public void findUserEvent() {
 		lobbyPanel.startFind(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

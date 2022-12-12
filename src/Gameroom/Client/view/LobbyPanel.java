@@ -82,13 +82,8 @@ public class LobbyPanel extends JPanel{
 		add(chatPen, "Center"); // 가운데에 붙임 
 
 	}
-
-	
 	
 	public void startFind(ActionListener listener) { // 게임 시작 
 		enterBtn.addActionListener(listener);
-	
 	}
-	
-
 }
