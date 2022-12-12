@@ -13,14 +13,14 @@ public class Controller {
 	JPanel currentPanel;
 	
 	
-	public void enter() {
+	public void enter() { // game connect
 		
 		currentPanel = new LoginPanel();
-		MainPanel.frame.change(currentPanel); // 로그인 패널 
+		MainPanel.frame.change(currentPanel); // show login panel 
 		
 		client = new MultiClient();
 		String name = "임시 이름" + (int) (Math.random() * 10); // 구분자 
-		client.start(name); // 소켓 연결
+		client.start(); // 소켓 연결
 
 	}
 	public void Lobby() {
