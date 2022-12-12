@@ -11,9 +11,10 @@ public class UserDAO {
 
 	UserDTO dto = null;
 	Connection conn = null;
+	DBConn dbConn = new DBConn();
 
 	public UserDAO() {
-		conn = DBConn.getConnection();
+		
 	}
 
 	/*
@@ -53,6 +54,7 @@ public class UserDAO {
 	}
 
 	public UserDTO loginCheck(String nid, String npw) { // 로그인 
+		this.conn = dbConn.getConnection();
 		try {
 			String sql = "select * from User_Info where id=? and pw=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -61,13 +63,6 @@ public class UserDAO {
 
 			ResultSet result = pstmt.executeQuery();
 
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
 			while(result.next()) {
 				String id = result.getString("id");
 				String pw = result.getString("pw");
@@ -76,6 +71,9 @@ public class UserDAO {
 				int tie = result.getInt("tie");
 				return new UserDTO(id,pw,win,lose,tie);
 			}
+			
+			
+			dbConn.clear(result, conn, pstmt);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
