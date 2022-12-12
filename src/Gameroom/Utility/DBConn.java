@@ -29,7 +29,7 @@ public class DBConn {
 		return null;
 	}
 
-	private void clear(ResultSet rs, Connection conn, PreparedStatement stmt) {
+	public void clear(ResultSet rs, Connection conn, PreparedStatement stmt) {
 		if (rs != null) {
 			try {
 				if (!rs.isClosed())
@@ -63,7 +63,7 @@ public class DBConn {
 
 	}
 
-	private void clear(Connection conn, PreparedStatement stmt) {
+	public void clear(Connection conn, PreparedStatement stmt) {
 		if (stmt != null) {
 			try {
 				if (!stmt.isClosed())
